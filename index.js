@@ -85,7 +85,12 @@ app.delete('/deleteProduct/:id', (req, res) => {
   .then(documents => {res.send(documents)})
  .catch(err =>console.log(err))
  })
-
+ app.get("/checkout/:id", (req, res) => {
+  productCollection.find({_id: objectId(req.params.id)})
+  .toArray((err,documents) => {
+    res.send(documents[0]);
+  })
+})
   // client.close();
 });
 
